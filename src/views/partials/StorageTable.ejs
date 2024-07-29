@@ -1,0 +1,53 @@
+<table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Armazem</th>
+        <th scope="col">Localização</th>
+        <th scope="col">Capacidade</th>   
+       <th scope="col">Status de ocupação</th>
+        <th scope="col">Ações</th>
+
+
+      </tr>
+    </thead> 
+      
+    <tbody>    
+      <% if (StoragesAndProducts.length > 0) { %> 
+        <% let i = 0 %>
+        <% StoragesAndProducts.forEach(storage => { %>
+          <% i++ %> 
+          <tr>
+             <td> <%= i %></td> 
+             <td class="d-flex align-items-center justify-content-start"> 
+              <div class="img-product">
+                <img src="https://www.shutterstock.com/shutterstock/photos/2293032305/display_1500/stock-vector--d-cardboard-box-and-clipboard-with-tick-confirmed-order-delivery-concept-shipment-checklist-2293032305.jpg" alt="">
+             </div>
+             <%= storage.name %></td>
+             <td> <%= storage.location %></td>
+             <td> <%= storage.capacity %> <%= storage.un %></td> 
+             <% if (storage.status === "Livre") { %>
+              <td> <span class="badge text-bg-success"> <i class=" icon ph-bold ph-checks" > </i> <%= storage.status %></span></td>
+            <% }else if(storage.status === "Cheio") { %>
+              <td> <span class="badge text-bg-danger"> <i class=" icon ph-bold ph-warning" > </i>  <%= storage.status %></span></td>
+              <% } else if(storage.status ==="Parcialmente Ocupado") { %>
+                <td> <span class="badge text-bg-warning"><i class=" icon ph-bold ph-flow-arrow" >  </i> <%= storage.status %></span></td>
+             <% }%>
+             <td>
+              <button type="button" class="btn btn-dark"  data-bs-toggle="modal"  data-bs-target="#staticBackdrop-edit-<%=i %>"><i class=" icon ph-bold ph-pencil-simple"></i></button> 
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-Delete-<%=i%>"><i class=" icon ph-bold ph-trash"></i> </button>  
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-Inspect-<%=i %>"><i class=" icon ph-bold ph-eye"></i> </button> 
+              <%- include('DeleteStorageModal.ejs',{storage:storage,i:i}) %> 
+              <%- include('StorageEditModal.ejs',{storage:storage,i:i,allProducts:allProducts}) %> 
+              <%- include('StorageInspectModal.ejs',{storage:storage,i:i,allProducts:allProducts}) %> 
+              
+            </td>
+            
+          </tr>
+          <% }) %>
+      <% } %>
+    
+    </tbody> 
+
+  </table> 
+  

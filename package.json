@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "@types/node": "^20.14.7",
+    "bootstrap-icons": "^1.11.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.4.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0",
+    "npx": "^10.2.2",
+    "tsx": "^4.15.7",
+    "validator": "^13.12.0"
+  },
+  "name": "p-m-saas",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsx watch server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duartelitz/P-M-SaaS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Duartelitz/P-M-SaaS/issues"
+  },
+  "homepage": "https://github.com/Duartelitz/P-M-SaaS#readme"
+}

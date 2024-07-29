@@ -1,0 +1,219 @@
+<!-- Modal -->
+<div
+  class="modal modal-xl fade"
+  id="staticBackdrop-edit-<%=i %>"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-3" id="staticBackdropLabel">
+          Editar <%= storage.name %>
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          class="row g-3"
+          enctype="multipart/form-data"
+          action="/storage/edit/<%= storage._id %>"
+          method="POST"
+        >
+          <h3 class="fs-5">Campos Básicos</h3>
+          <div class="col-md-4">
+            <label for="productname" class="form-label">Nome</label>
+            <input
+              type="text"
+              name="name"
+              value="<%= storage.name %>"
+              placeholder="Nome do Armazem"
+              class="form-control"
+              id="productname"
+            />
+          </div>
+          <div class="col-3">
+            <label for="status" class="form-label">Status de ocupação</label>
+            <select
+              class="form-select"
+              id="status"
+              name="status"
+              aria-label="Default select example"
+            >
+              <option value="<%= storage.status %>" selected disabled>
+                <%= storage.status %>
+              </option>
+              <option value="Livre">Livre</option>
+              <option value="Parcialmente Ocupado">Parcialmente Ocupado</option>
+              <option value="Cheio">Cheio</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="capacity" class="form-label">Capacidade</label>
+            <input type="number" name="capacity" value="<%= storage.capacity%>" placeholder="Capacidade de Estoque"
+                class="form-control" id="capacity">
+        </div> 
+        <div class="col-2">
+            <label for="status" class="form-label">Unidade de Medida</label>
+            <select class="form-select" id="un" name="un" aria-label="Default select example">
+                <option selected><%= storage.un%></option> 
+                <% unities.forEach(unity => { %>
+                    <option value="<%= unity.name %>"><%= unity.name %></option>
+                <% }) %>
+            </select>
+        </div>   
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">
+              Localização do armazém</label
+            >
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                name="location"
+                placeholder="Leave a comment here"
+                id="floatingTextarea2"
+                style="height: 100px"
+              ><%= storage.location%></textarea>
+              <label for="floatingTextarea2">Localização</label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label"
+              >Produtos Armazenados</label
+            >
+            <div class="form-floating">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Estoque Mínimo</th>
+                    <th scope="col">Estoque Máximo</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Preço de Venda</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <%  let y = 0 %> 
+                  <% if (allProducts.length > 0) { %>
+                    <% allProducts.forEach(prod => { %>  
+                      <% if (prod.storage === storage.name) { %>
+                          <%  y++ %>
+                          <tr class="p-2">
+                            <th scope="row"><%= y %></th>
+                            <td class="d-flex align-items-center justify-content-start">  
+                              <% if (!prod.productImage) { %>
+                                <div class="img-product">
+                                  <img src="https://media.istockphoto.com/id/1363734940/pt/foto/three-cardboard-boxes.jpg?s=2048x2048&w=is&k=20&c=sU00RkOfhWh7z-0uOsJwHqe26cBmC-mdTjUq-R-JV4A=" alt="">
+                               </div>
+                              <% }else { %>
+                                <div class="img-product">
+                                  <img src="/uploads/<%=prod.productImage%>" alt="">
+                               </div>
+                             <% } %>
+                              
+                             <%= prod.name %>
+                            </td>
+                           
+                            <td><%= prod.category %></td>  
+                         
+                            <% if (prod.quantity <= prod.minInStock) { %>
+                                <td> <span class="badge text-bg-danger">  <i class=" icon ph-bold ph-warning-circle" > </i>  <%= prod.quantity  %> <%= prod.un %></span></td>
+                              <% }else if(prod.quantity > prod.minInStock){ %> 
+                                <td> <span class="badge text-bg-success">  <i class=" icon ph-bold ph-arrow-up" > </i>  <%= prod.quantity  %> <%= prod.un %></span></td>
+                                <% }else { %>
+                                  <td> <%= prod.quantity  %>  <%= prod.un %></td>
+                                 <% } %>
+                            <td><%= prod.minInStock %>  <%= prod.un %></td>
+                            <td><%= prod.maxInStock %>  <%= prod.un %></td>
+                            <td>R$<%= prod.costPrice %></td>
+                            <td>R$ <%= prod.salePrice %></td>  
+                            <% if (prod.status === "Ativo") { %>
+                              <td> <span class="badge text-bg-success"> <i class=" icon ph-bold ph-checks" > </i> <%= prod.status %></span></td>
+                            <% }else if(prod.status === "Inativo") { %>
+                              <td> <span class="badge text-bg-danger"> <i class=" icon ph-bold ph-warning" > </i>  <%= prod.status %></span></td>
+                              <% } else if(prod.status ==="Descontinuado") { %>
+                                <td> <span class="badge text-bg-warning"><i class=" icon ph-bold ph-flow-arrow" >  </i> <%= prod.status %></span></td>
+                             <% }%>
+                            
+                            
+                          </tr>
+                  
+                      <% } %>
+                   
+                  <% }) %>
+                  <% }else { %>
+                    <div class="alert alert-warning" role="alert">
+                       Nenhum produto Cadastrado ! 
+                    </div>
+                   <% } %>
+                   
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <h3 class="fs-5">Layout do Armazem</h3>
+          <div class="col-md-16">
+            <div class="profile-pic">
+              <label class="-label" for="file-<%=i%>">
+                <span class="glyphicon glyphicon-camera"></span>
+                <span>Change Layout</span>
+              </label>
+
+              <input id="file-<%=i%>" type="file" name="layoutEdited" onchange="loadFileEdited(event,'<%=i%>')" />
+             <% if (storage.layout) { %>
+              <img src="/uploads/<%=storage.layout%>" id="output-<%=i %>" width="200" />
+             <% } else { %>
+                  <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+                      id="output-<%=i %>" width="200" />
+              <% } %>
+            </div>
+          </div>
+
+          <h3 class="fs-5">Campos de Controle e Auditoria</h3>
+          <div class="col-md-3">
+            <label for="date" class="form-label">Date de Cadastro</label>
+            <input
+              type="date"
+              name="date"
+              value="<%=storage.date%>"
+              class="form-control"
+              id="date"
+            />
+          </div>
+          <div class="col-md-3">
+            <label for="lastUpdate" class="form-label"
+              >Última Atualização</label
+            >
+            <input
+              type="date"
+              name="lastUpdate"
+              value="<%= storage.lastUpdate%>"
+              class="form-control"
+              id="lastUpdate"
+            />
+          </div>
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">
+              Editar Armazem
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

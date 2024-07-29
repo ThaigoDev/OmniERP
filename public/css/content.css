@@ -1,0 +1,120 @@
+.content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  padding-top: 30vh;
+}
+
+.header-nav {
+  background-color: rgb(249, 249, 249);
+  height: 12vh;
+  width: 80%;
+  display: flex;
+  z-index: 0;
+  top: 0;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  position: fixed;
+}
+.header-nav .title-page {
+  position: relative;
+  bottom: 3vh;
+  left: 5vw;
+  font-size: 1.6em;
+}
+
+.table-area-index {
+  position: absolute;
+  width: 86%;
+  top: 15%;
+  right: 1vh;
+}
+
+.img-product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3vh;
+  width: 20%;
+  -webkit-clip-path: circle();
+          clip-path: circle();
+}
+.img-product img {
+  height: 100%;
+}
+
+.filter-category {
+  width: 20vw;
+  position: relative;
+  top: 8.5vh;
+  left: 5vw;
+}
+.filter-category .filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.filter-category .filter .filter_category {
+  margin-left: 2vh;
+}
+
+.buttons {
+  position: relative;
+  left: 45vw;
+  top: 2vh;
+}
+
+.seac {
+  position: relative;
+  left: 26.5vw;
+  top: 6.5vh;
+}
+
+.profile-pic {
+  color: transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.profile-pic input {
+  display: none;
+}
+.profile-pic img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 165px;
+  height: 165px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  z-index: 0;
+}
+.profile-pic .-label {
+  cursor: pointer;
+  height: 165px;
+  width: 165px;
+}
+.profile-pic:hover .-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: rgb(250, 250, 250);
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 100px;
+  margin-bottom: 0;
+}
+.profile-pic span {
+  display: inline-flex;
+  padding: 0.2em;
+  height: 2em;
+}/*# sourceMappingURL=content.css.map */

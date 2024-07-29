@@ -1,0 +1,76 @@
+<table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Produto</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Quantidade</th>  
+        <th scope="col">Unidade</th>
+        <th scope="col">Estoque Mínimo</th> 
+        <th scope="col">Estoque Máximo</th> 
+        <th scope="col">Preço</th>
+        <th scope="col">Preço de Venda</th> 
+        <th scope="col">Validade</th>
+       <th scope="col">Status</th>
+       <th scope="col">Ações</th>
+
+
+      </tr>
+    </thead>
+    <tbody>   
+    <%  let i = 0 %>
+      <% products.forEach(prod => { %> 
+        <%  i++ %>
+        <tr class="p-2">
+          <th scope="row"><%= i %></th>
+          <td class="d-flex align-items-center justify-content-start">  
+            <% if (!prod.productImage) { %>
+              <div class="img-product">
+                <img src="https://media.istockphoto.com/id/1363734940/pt/foto/three-cardboard-boxes.jpg?s=2048x2048&w=is&k=20&c=sU00RkOfhWh7z-0uOsJwHqe26cBmC-mdTjUq-R-JV4A=" alt="">
+             </div>
+            <% }else { %>
+              <div class="img-product">
+                <img src="/uploads/<%=prod.productImage%>" alt="">
+             </div>
+           <% } %>
+            
+           <%= prod.name %>
+          </td>
+         
+          <td><%= prod.category %></td>  
+       
+          <% if (prod.quantity <= prod.minInStock) { %>
+              <td> <span class="badge text-bg-danger">  <i class=" icon ph-bold ph-warning-circle" > </i>  <%= prod.quantity  %> <%= prod.un %></span></td>
+            <% }else if(prod.quantity > prod.minInStock){ %> 
+              <td> <span class="badge text-bg-success">  <i class=" icon ph-bold ph-arrow-up" > </i>  <%= prod.quantity  %> <%= prod.un %></span></td>
+              <% }else { %>
+                <td> <%= prod.quantity  %>  <%= prod.un %></td>
+               <% } %>
+          <td> <%= prod.un %></td> 
+          <td><%= prod.minInStock %>  <%= prod.un %></td>
+          <td><%= prod.maxInStock %>  <%= prod.un %></td>
+          <td>R$<%= prod.costPrice %></td>
+          <td>R$ <%= prod.salePrice %></td>  
+          <td> <%= prod.productValidity%></td> 
+          <% if (prod.status === "Ativo") { %>
+            <td> <span class="badge text-bg-success"> <i class=" icon ph-bold ph-checks" > </i> <%= prod.status %></span></td>
+          <% }else if(prod.status === "Inativo") { %>
+            <td> <span class="badge text-bg-danger"> <i class=" icon ph-bold ph-warning" > </i>  <%= prod.status %></span></td>
+            <% } else if(prod.status ==="Descontinuado") { %>
+              <td> <span class="badge text-bg-warning"><i class=" icon ph-bold ph-flow-arrow" >  </i> <%= prod.status %></span></td>
+           <% }%>
+          
+          <td>
+            <button type="button" class="btn btn-dark"  data-bs-toggle="modal"  data-bs-target="#staticBackdrop-<%=i%>"><i class=" icon ph-bold ph-pencil-simple"></i></button> 
+           <button type="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-Delete-<%=i%>"><i class=" icon ph-bold ph-trash"></i> </button> 
+            <%- include('EditModal.ejs',{i:i ,prod:prod, categories:categories }) %>
+            <%- include('DeleteModal.ejs',{prod:prod,i:i }) %> 
+            
+          </td> 
+        </tr>
+
+      <% }) %>
+    </tbody> 
+
+  </table> 
+  

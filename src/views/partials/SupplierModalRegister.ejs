@@ -1,0 +1,76 @@
+<!-- Modal -->
+<div class="modal modal-lg fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel">Cadastrar Fornecedor</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" enctype="multipart/form-data" action="/supplier/create" method="POST">
+
+                    <h3 class="fs-5">Dados do Fornecedor</h3>
+                    <div class="col-md-16">
+
+                        <div class="profile-pic">
+                            <label class="-label" for="file">
+                                <span class="glyphicon glyphicon-camera"></span>
+                                <span>Change Image</span>
+                            </label>
+                            <input id="file" type="file" name="supplierPhoto" onchange="loadFile(event)" />
+                            <img src="https://media.istockphoto.com/id/1363734940/pt/foto/three-cardboard-boxes.jpg?s=2048x2048&w=is&k=20&c=sU00RkOfhWh7z-0uOsJwHqe26cBmC-mdTjUq-R-JV4A="
+                                id="output" width="200" />
+                        </div>
+                    </div> 
+                    
+
+                    <div class="col-md-4">
+                        <label for="supplier" class="form-label">Nome</label>
+                        <input type="text" name="name" placeholder="Nome do Fornecedor" class="form-control"
+                            id="supplier">
+                    </div> 
+                    <div class="col-md-4">
+                        <label for="supplierTel" class="form-label">Telefone</label>
+                        <input type="text" name="tel"  placeholder="(00) 0000-0000" class="phone_with_ddd form-control"
+                            id="supplierTel">
+                    </div> 
+                    <div class="col-md-4">
+                        <label for="supplierEmail" class="form-label">E-mail</label>
+                        <input type="text" name="email" placeholder="exemplo@gmal.com" class="form-control"
+                            id="supplierEmail">
+                    </div> 
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Descrição Detalhada do Fornecedor</label>
+                        <div class="form-floating">
+                            <textarea class="form-control"  name="description" placeholder="Deixe sua descrição aqui..."
+                                id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Descrição</label>
+                        </div>
+                    </div> 
+                    <div class="col-md-2">
+                        <label for="supplierCode" class="form-label">Código</label>
+                        <input type="text" name="code" placeholder="Cód. do Fornecedor" class="form-control"
+                            id="supplierCode">
+                    </div> 
+                    <div class="col-4">
+                        <label for="status" class="form-label">Condições de Pagamento</label>
+                        <select class="form-select" id="status" name="paymentMethod" aria-label="Default select example">
+                            <option selected>Selecione o Status</option>
+                            <option value="Ativo">PIX</option>
+                            <option value="Inativo">Cartão</option>
+                            <option value="Descontinuado">Boleto</option>
+                            <option value="Descontinuado">TED</option> 
+                        </select>
+                    </div>
+                    
+                   
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

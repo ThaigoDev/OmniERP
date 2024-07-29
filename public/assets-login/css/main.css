@@ -1,0 +1,132 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login-area {
+  display: grid;
+  grid-template-areas:
+    "s2 s2"
+    "s1 s1";
+}
+.section1 {
+  grid-area: s1;
+  background: url(../utilites/bg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.section2 {
+  gap: 5vh;
+  height: 100vh;
+  grid-area: s2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.text-form {
+  color: #3e3e3e;
+  font-size: 1.5em;
+  padding-bottom: 2vh;
+}
+.forms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4vh;
+  width: 90%;
+} 
+.input-area{
+    width: 100%; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+
+} 
+.input-area img {
+    position: relative;
+   left: 2.5vw;
+    height: 3vh;
+    filter: opacity(0.5);
+}
+.forms input {
+  background-color: #e6e6e6;
+  border-radius: 2vh;
+  padding: 3vh;
+  border: none;
+  width: 100%;
+   padding-left: 8vh;
+  font-size: 1.2em;
+}
+.inputs:focus {
+  outline: none;
+  border: 2.5px solid #c45a7a;
+}
+.forms .form-button {
+  cursor: pointer;
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    #ef9572,
+    #df7574,
+    #c45a7a,
+    #a04681,
+    #703b83
+  );
+  padding: 3vh;
+  width: 100%;
+  border: none;
+  font-size: 1.3em;
+  border-radius: 5vh; 
+  
+  
+}
+.forms .form-button:hover {
+  background-image: linear-gradient(
+    to left,
+    #ef9572,
+    #df7574,
+    #c45a7a,
+    #a04681,
+    #703b83
+  ); 
+  transition: 5s; 
+}
+.forgot {
+  color: #bebebe;
+}
+.create-account {
+  position: relative;
+  top: 15%;
+  color: #bebebe;
+}
+@media (min-width: 1000px) {
+  .login-area {
+    display: grid;
+    grid-template-areas:
+      "s1 s2"
+      "s1 s2";
+  }
+  .section1 {
+    width: 55vw;
+  }
+  .section2 {
+    width: 45vw;
+  }
+  .forms input {
+    width: 100%;
+  }
+  .forms {
+    width: 35vw;
+  }
+  .form-button {
+    width: 10vw;
+  }
+}

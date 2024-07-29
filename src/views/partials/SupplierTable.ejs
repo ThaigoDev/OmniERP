@@ -1,0 +1,52 @@
+<table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">E-mail</th>   
+        <th scope="col">Ações</th>
+
+
+      </tr>
+    </thead> 
+      
+    <tbody>    
+      <%  let i = 0 %>
+      <% suppliersAndProducts.forEach(supplier => { %> 
+        <%  i++ %>
+        <tr class="p-2">
+          <th scope="row"><%= i %></th>
+          <td class="d-flex align-items-center justify-content-start">  
+            <% if (!supplier.supplierPhoto) { %>
+              <div class="img-product">
+                <img src="https://media.istockphoto.com/id/1363734940/pt/foto/three-cardboard-boxes.jpg?s=2048x2048&w=is&k=20&c=sU00RkOfhWh7z-0uOsJwHqe26cBmC-mdTjUq-R-JV4A=" alt="">
+             </div>
+            <% }else { %>
+              <div class="img-product">
+                <img src="/uploads/<%=supplier.supplierPhoto%>" alt="">
+             </div>
+           <% } %>
+            
+           <%= supplier.name %>
+          </td>
+         
+          <td><%= supplier.tel%></td>  
+          <td> <%= supplier.email%></td> 
+          <td>
+            <button type="button" class="btn btn-dark"  data-bs-toggle="modal"  data-bs-target="#staticBackdrop-Edit-<%=i %>"><i class=" icon ph-bold ph-pencil-simple"></i></button> 
+           <button type="button" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-Delete-<%=i%>"><i class=" icon ph-bold ph-trash"></i> </button> 
+           <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#staticBackdrop-Inspect-<%=i %>"><i class=" icon ph-bold ph-eye"></i> </button> 
+           <%- include('SupplierModalEdit.ejs',{supplier:supplier,i:i}) %>
+           <%- include('SupplierInspectModal.ejs',{i:i,supplier:supplier}) %>
+           <%- include('DeleteSupplierModal.ejs',{supplier:supplier,i:i}) %> 
+
+          </td> 
+        </tr>
+
+      <% }) %>
+    
+    </tbody> 
+
+  </table> 
+  

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets-login/css/main.css" /> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>OmniERP-Login</title>
+  </head>
+  <body>
+    <main class="login-area">
+      <section class="section1"></section>
+      <section class="section2">
+        <div class="text-form">
+          <h1>User Login</h1>
+        </div>
+        <form class="forms" action="/auth" method="POST"> 
+            <% if (erros.length> 0 ) { %>
+                <% erros.forEach(err => { %>
+                   <div class="alert alert-danger" role="alert">
+                       <%= err %>
+                     </div>
+                <% }) %>
+               <% } %> 
+               <% if (success.length > 0 ) { %>
+                    <% success.forEach(scs => { %>
+                        <div class="alert alert-success" role="alert">
+                            <%= scs %>
+                          </div>
+                    <% }) %>
+               <% } %>
+          <div class="input-area">
+            <img src="assets-login/utilites/USER.svg" alt="" />
+            <input class="inputs" name="email" type="email" placeholder="E-mail" required />
+          </div>
+          <div class="input-area">
+            <img src="assets-login/utilites/senha.svg" alt="" />
+            <input
+              class="inputs"
+              type="password"
+              required 
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <button class="form-button" type="submit">LOGIN</button>
+        </form>
+        <div class="forgot">
+          <p>Forgot Username Password?</p>
+        </div>
+        <div class="create-account"> <p  onclick="location.href ='/register'"> Create Your Account ➝ </p></div>
+      </section>
+    </main> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

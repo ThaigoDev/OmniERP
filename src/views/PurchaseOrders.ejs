@@ -1,0 +1,94 @@
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/StoragePage.css"> 
+  <link rel="stylesheet" href="/css/header.css"> 
+  <link rel="stylesheet" href="/css/sidebar.css">  
+  <title>OmniERP  - Pedidos de Compra</title>
+ 
+</head> 
+<body>     
+<!--Modal Regiter--> 
+<%- include('./partials/sidebar.ejs',{user:user}) %> 
+ <%- include('./partials/ModalRegisterOrders.ejs') %>
+  <div class="container-side">
+    <main class="content">
+       <header class="header-nav">  
+        
+         <div class="filters">
+           <div class="filter-category">
+             <div class="input-select"> 
+
+               <div class="filter">
+                 Filter: 
+                 <select class="form-select filter_category" aria-label="Default select example">
+                  <option selected>Categoria</option>
+                  
+                </select> 
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Status</option>
+                  <option value="1">Ativo</option>
+                  <option value="2">Inativo</option>
+                  <option value="3">Descontinuado</option>
+                </select>
+               </div>
+             </div>
+           </div> 
+           <h2 class="title-page">
+            Pedidos de Compras
+          </h2> 
+         </div> 
+          <div class="buttons">
+            <button class="btn btn-primary p-2" type="submit">Exportar <i class=" icon ph-bold ph-arrow-circle-right"></i></button> 
+            <button type="button" class="btn btn-outline-primary  p-2"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Adicionar Armazem <i class=" icon ph-bold ph-plus-circle"></i> </button>
+         </div> 
+         <form class="d-flex seac" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+       </header>  
+       <section class="table-area-index"> 
+         <%- include('./partials/PurchaseOrdersTable.ejs') %>
+
+       </section >
+    </main> 
+    </div>  
+    <script> 
+      const products = <%-JSON.stringify(suppliersAndProducts) %>;   
+     document.getElementById("select-of-supplier").addEventListener("change",()=>{ 
+     document.getElementById("products-area").innerHTML = ""; 
+      let supplierAndProductsName = document.getElementById("select-of-supplier").value; 
+      const supplierFiltred= products.filter((supplier)=> supplier._id ===supplierAndProductsName);  
+      supplierFiltred.forEach((supplier)=>{ 
+         for(let i in supplier.products ) {
+          document.getElementById("products-area").innerHTML += 
+      `<div class="form-check check-product">
+                <input class="form-check-input" type="checkbox"  name="productID" value="${supplier.products[i]._id}" id="flexCheckChecked" checked>
+                                    <label class="form-check-label d-flex" for="flexCheckChecked">
+                                       ${supplier.products[i].name}
+                                    </label>
+                <input id="floors" class="qtdInputProduct" placeholder="QTD"  name="quantity" type="number">
+        </div>
+      `
+         }
+       
+     
+      })
+      
+    }); 
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script src="/js/productImage.js"></script>
+    <script src="/js/sidebar.js"></script>   
+    <script src="/js/range.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</body>
+</html>

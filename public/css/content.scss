@@ -1,0 +1,141 @@
+
+.content {
+   
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content:start;
+    flex-direction: column;   
+    padding-top: 30vh;
+
+    
+} 
+.header-nav{
+    background-color: rgb(249, 249, 249);
+    height: 12vh;   
+    width: 80%;
+    display: flex; 
+    z-index: 0;  
+    top: 0;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    position: fixed; 
+        .title-page {
+      position:relative; 
+      bottom: 3vh; 
+      left:5vw; 
+      font-size: 1.6em;
+    }
+  
+
+}  
+.table-area-index  {
+    position: absolute; 
+    width: 86%; 
+    top: 15%;   
+    right: 1vh;
+}  
+.img-product  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3vh;
+    width: 20%; 
+    clip-path: circle(); 
+    img {
+      height: 100%;
+    }
+} 
+.filter-category { 
+  width: 20vw;
+  position: relative; 
+  top: 8.5vh; 
+  left: 5vw;
+    .filter {
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        flex-direction: row;  
+        .filter_category {
+            margin-left: 2vh;
+        }
+    
+    }      
+}
+.buttons {
+    position: relative;  
+    left: 45vw; 
+    top: 2vh;
+} 
+.seac {
+    position: relative;  
+    left: 26.5vw;
+    top: 6.5vh;
+
+} 
+ 
+
+
+@mixin object-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  $circleSize: 165px;
+  $radius: 100px;
+  $shadow: 0 0 10px 0 rgba(255,255,255,.35);
+  $fontColor: rgb(250,250,250);
+  
+  .profile-pic {
+    color: transparent;
+    transition: all .3s ease;
+    @include object-center;
+    position: relative;
+    transition: all .3s ease;
+    
+    input {
+      display: none;
+    }
+    
+    img {
+      position: absolute;
+      object-fit: cover;
+      width: $circleSize;
+      height: $circleSize;
+      box-shadow: $shadow;
+      border-radius: $radius;
+      z-index: 0;
+    }
+    
+    .-label {
+      cursor: pointer;
+      height: $circleSize;
+      width: $circleSize;
+    }
+    
+    &:hover {
+      .-label {
+        @include object-center;
+        background-color: rgba(0,0,0,.8);
+        z-index: 10000;
+        color: $fontColor;
+        transition: background-color .2s ease-in-out;
+        border-radius: $radius;
+        margin-bottom: 0;
+      }
+    }
+    
+    span {
+      display: inline-flex;
+      padding: .2em;
+      height: 2em;
+    }
+  }
+  
+  /////////////////////////
+  // Body styling 🐾
+  /////////---------->
+  

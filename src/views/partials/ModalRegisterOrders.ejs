@@ -1,0 +1,50 @@
+<!-- Modal -->
+<div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel">Solicitar Pedido de Compra</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" action="/purchase/orders/create" method="POST">
+                    <h3 class="fs-5"> Campos Básicos</h3>
+                    <div class="col-6"> 
+                       
+                        <label for="status" class="form-label">Fornecedor</label>
+                        <select class="form-select" id="select-of-supplier" name="supplierID" aria-label="Default select example"> 
+                            <option selected>Selecione o Forncedor</option>
+                            <% suppliersAndProducts.forEach(supplier => { %>
+                                <option value="<%= supplier._id %>"><%= supplier.name %></option>
+                           <% }) %>
+                        </select>
+                    </div> 
+                    <div class="col-6">
+                        <label for="status" class="form-label">Método de Pagamento</label>
+                        <select class="form-select" id="status" name="paymentMethod" aria-label="Default select example">
+                            <option selected>Selecione o Método</option>
+                            <option value="PIX">PIX</option>
+                            <option value="Cartão">Cartão</option>
+                            <option value="Boleto">Boleto</option> 
+                            <option value="Boleto">TED</option>
+
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="status" class="form-label">Produtos</label>
+                        <details id="products-area" class="form-control products-area">
+                            <summary>Selecione o Produto</summary>
+
+                        </details>  
+                    </div> 
+                   
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Solicitar Pedido </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

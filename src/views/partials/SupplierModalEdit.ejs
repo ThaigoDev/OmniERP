@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div class="modal modal-lg fade" id="staticBackdrop-Edit-<%=i %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel">Editar <%= supplier.name %></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" enctype="multipart/form-data" action="/supplier/edit/<%=supplier._id%>" method="POST">
+
+                    <h3 class="fs-5">Dados do Fornecedor</h3>
+                    <div class="col-md-16">
+
+                        <div class="profile-pic">
+                            <label class="-label" for="file-<%=i%>">
+                              <span class="glyphicon glyphicon-camera"></span>
+                              <span>Change Layout</span>
+                            </label>
+              
+                            <input id="file-<%=i%>" type="file" name="supplierPhotoEdited" onchange="loadFileEdited(event,'<%=i%>')" />
+                           <% if (supplier.supplierPhoto) { %>
+                            <img src="/uploads/<%=supplier.supplierPhoto%>" id="output-<%=i %>" width="200" />
+                           <% } else { %>
+                                <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+                                    id="output-<%=i %>" width="200" />
+                            <% } %>
+                          </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="supplier" class="form-label">Nome</label>
+                        <input type="text" name="name" value="<%= supplier.name %>"  placeholder="Nome do Fornecedor" class="form-control"
+                            id="supplier">
+                    </div> 
+                    <div class="col-md-4">
+                        <label for="supplierTel" class="form-label">Telefone</label>
+                        <input type="text" name="tel" placeholder="(00) 0000-0000" value = "<%= supplier.tel %>"   class=" phone_with_ddd form-control form-control"
+                            id="supplierTel"> 
+                    </div> 
+                    <div class="col-md-4">
+                        <label for="supplierEmail" class="form-label">E-mail</label>
+                        <input type="text" name="email"  value="<%= supplier.email%>"  placeholder="exemplo@gmal.com" class="form-control"
+                            id="supplierEmail">
+                    </div>  
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Descrição Detalhada do Fornecedor</label>
+                        <div class="form-floating">
+                            <textarea class="form-control"  name="description"   placeholder="Deixe sua descrição aqui..."
+                                id="floatingTextarea2" style="height: 100px"><%= supplier.description%></textarea>
+                            <label for="floatingTextarea2">Descrição</label>
+                        </div>
+                    </div> 
+                    <div class="col-md-2">
+                        <label for="supplierCode" class="form-label">Código</label>
+                        <input type="text" name="code" value="<%= supplier.code%>"  placeholder="Cód. do Fornecedor" class="form-control"
+                            id="supplierCode">
+                    </div> 
+                    <div class="col-4">
+                        <label for="status" class="form-label">Condições de Pagamento</label>
+                        <select class="form-select"   id="status" name="paymentMethod" value="<%= supplier.paymentMethod%>"  aria-label="Default select example">
+                            <option selected><%= supplier.paymentMethod%></option>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                            <option value="Descontinuado">Descontinuado</option>
+                        </select>
+                    </div>
+                   
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Editar  Fornecedor</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

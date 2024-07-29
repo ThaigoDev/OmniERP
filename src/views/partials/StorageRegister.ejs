@@ -1,0 +1,112 @@
+<!-- Modal -->
+<div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel">Cadastrar Armazem</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" enctype="multipart/form-data"  action="/storage/create/" method="POST" >
+                    <h3 class="fs-5"> Campos Básicos</h3>
+                    <div class="col-md-4">
+                        <label for="productname" class="form-label">Nome</label>
+                        <input type="text" name="name" placeholder="Nome do Armazem" class="form-control"
+                            id="productname">
+                    </div> 
+                    <div class="col-3">
+                        <label for="status" class="form-label">Status de ocupação</label>
+                        <select class="form-select" id="status" name="status" aria-label="Default select example">
+                            <option selected>Selecione o Status</option>
+                            <option value="Livre">Livre</option>
+                            <option value="Inativo">Parcialmente Ocupado</option>
+                            <option value="Descontinuado">Cheio</option>
+                        </select>
+                    </div>   
+                    <div class="col-md-3">
+                        <label for="capacity" class="form-label">Capacidade</label>
+                        <input type="number" name="capacity" placeholder="Capacidade de Estoque"
+                            class="form-control" id="capacity">
+                    </div> 
+                    <div class="col-2">
+                        <label for="status" class="form-label">Unidade de Medida</label>
+                        <select class="form-select" id="un" name="un" aria-label="Default select example">
+                            <option selected>Selecione a Medida</option> 
+                            <% unities.forEach(unity => { %>
+                                <option value="<%= unity.name %>"><%= unity.name %></option>
+                            <% }) %>
+                            
+                        </select>
+                    </div>   
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label"> Localização do armazém</label>
+                        <div class="form-floating">
+                            <textarea class="form-control"  name="location" placeholder="Leave a comment here"
+                                id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Localização</label>
+                        </div>
+                    </div>  
+                    <!----
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Produtos Armazenados</label>
+                        <div class="form-floating">
+                            <table class="table ">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Produto</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Quantidade</th>  
+                                    <th scope="col">Unidade</th>
+                                    <th scope="col">Estoque Mínimo</th> 
+                                    <th scope="col">Estoque Máximo</th> 
+                                    <th scope="col">Preço</th>
+                                    <th scope="col">Preço de Venda</th> 
+                                    <th scope="col">Validade</th>
+                                   <th scope="col">Status</th>
+                                   <th scope="col">Ações</th>
+                            
+                            
+                                  </tr>
+                                </thead>
+                                <tbody>   
+                                    
+                                </tbody> 
+                            
+                              </table> 
+                        </div>
+                    </div>  -->
+                    
+                    <h3 class="fs-5">Layout do Armazem</h3>  
+                    <div class="col-md-16">
+                        
+                        <div class="profile-pic">
+                            <label class="-label" for="file">
+                              <span class="glyphicon glyphicon-camera"></span>
+                              <span>Change Layout</span>
+                            </label>
+                            <input id="file" type="file" name="layout" onchange="loadFile(event)"/>
+                            <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg" id="output" width="200" />
+                          </div>
+                    </div>   
+                  
+                    <h3 class="fs-5">Campos de Controle e Auditoria</h3> 
+                    <div class="col-md-3">
+                        <label for="date" class="form-label">Date de Cadastro</label>
+                        <input type="date" name="date"  class=" form-control" id="date">
+                    </div>    
+                    <div class="col-md-3">
+                        <label for="lastUpdate" class="form-label">Última Atualização</label>
+                        <input type="date" name="lastUpdate"  class="form-control" id="lastUpdate">
+                    </div>   
+                  
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                    </div> 
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
