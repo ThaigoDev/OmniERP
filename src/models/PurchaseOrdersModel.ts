@@ -6,8 +6,8 @@ const PurchaseOrdersSchema = mongoose.Schema({
   paymentMethod: { type: String, required: true },
   itens: [
     {
-      productID: { type: Schema.Types.ObjectId, ref: "Products" },
-      quantity: { type: Number, required: false },
+      productID: [{ type: Schema.Types.ObjectId, ref: "Products" }],
+      quantity: [{ type: Number, required: false }]
     },
   ],
 });

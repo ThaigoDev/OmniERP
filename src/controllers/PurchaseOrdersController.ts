@@ -12,21 +12,25 @@ abstract class PurchaseOrdersController {
     res.render("PurchaseOrders", { allProducts, suppliersAndProducts });
   }
   public static async create(req: any, res: any) {
-    let itens = [];
-    itens.push({ productID: req.body.productID, quantity: req.body.quantity });
+    /* let itens = [];
+    itens.push({ productID: req.body.productID, quantity: req.body.quantity }); */ 
+    
     try {
       let body: object = {};
       body = {
         supplierID: req.body.supplierID,
         paymentMethod: req.body.paymentMethod,
-        itens: itens,
+        itens: [
+          {
+            productID: req.body.productID,
+            quantity: req.body.quantity,
+          },
+        ],
       };
       console.log(body);
-      res.send(body);
-      /*
-      const purchaseRules = new PurchaseOrdersRules(req.body);
+      const purchaseRules = new PurchaseOrdersRules(body);
       await purchaseRules.create();
-      res.redirect("back"); */
+      res.redirect("back");
     } catch (e: any) {
       res.status(500).json({
         title: "Internal Server Error 500 !",
