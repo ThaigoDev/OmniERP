@@ -4,13 +4,9 @@ const PurchaseOrdersSchema = mongoose.Schema({
   supplierID: { type: Schema.Types.ObjectId, ref: "Suppliers" },
   date: { type: Date, dafault: Date.now },
   paymentMethod: { type: String, required: true },
-  itens: [
-    {
-      productID: [{ type: Schema.Types.ObjectId, ref: "Products" }],
-      quantity: [{ type: Number, required: false }]
-    },
-  ],
-});
+  productsID:  [{ type: Schema.Types.ObjectId, ref: "Products" }],
+  quantities: [{ type: Number, required: false }]
+  });
 const PurchaseOrdersModel = mongoose.model(
   "PurchaseOders",
   PurchaseOrdersSchema
@@ -30,6 +26,34 @@ class PurchaseOrdersRules {
     } catch (e: any) {
       throw new Error(e);
     }
+  } 
+  public async  getCompleteOrders() {
+    try{
+      const AllOrders =   await PurchaseOrdersModel.aggregate(
+        [ 
+          {
+         $lookup: {
+           from: "suppliers",
+           localField: "supplierID",
+           foreignField: "_id",
+           as: "supplier"
+         }
+       },
+       {
+         $lookup: {
+           from: "products",
+           localField: "productsID",
+           foreignField: "_id",
+           as: "products"
+         }
+       }
+     ]
+      ) 
+    return AllOrders; 
+
+    }catch(e:any) {
+      throw new Error(e); 
+    } 
   }
 }
 module.exports = PurchaseOrdersRules;

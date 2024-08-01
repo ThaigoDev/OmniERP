@@ -66,11 +66,11 @@
          for(let i in supplier.products ) {
           document.getElementById("products-area").innerHTML += 
       `<div class="form-check check-product">
-                <input class="form-check-input" type="checkbox"  name="productID" value="${supplier.products[i]._id}" id="flexCheckChecked" checked>
+                <input class="form-check-input" type="checkbox"  name="productsID" value="${supplier.products[i]._id}" id="flexCheckChecked" checked>
                                     <label class="form-check-label d-flex" for="flexCheckChecked">
                                        ${supplier.products[i].name}
                                     </label>
-                <input id="floors" class="qtdInputProduct" placeholder="QTD"  name="quantity" type="number">
+                <input id="floors" class="qtdInputProduct" placeholder="QTD"  name="quantities" type="number">
         </div>
       `
          }
