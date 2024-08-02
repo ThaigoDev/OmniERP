@@ -13,9 +13,10 @@ abstract class StorageController {
       const storageRules = new StorageModel(req.body);
       const allStorages = await storageRules.get();
       const StoragesAndProducts =
-        await storageRules.getAllStoragesAndProducts();
+      await storageRules.getAllStoragesAndProducts();
       const allProducts = await productModel.get();
-      const unities = await UnityModel.get();
+      const unities = await UnityModel.get(); 
+      
       res.render("StorageLocalsPage", {
         categories,
         allStorages,

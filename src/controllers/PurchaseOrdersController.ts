@@ -13,10 +13,7 @@ abstract class PurchaseOrdersController {
     console.log(allOrders);
     res.render("PurchaseOrders", { allProducts, suppliersAndProducts,allOrders });
   }
-  public static async create(req: any, res: any) {
-    /* let itens = [];
-    itens.push({ productID: req.body.productID, quantity: req.body.quantity }); */ 
-    
+  public static async create(req: any, res: any) {    
     try {
       let body: object = {};
       body = {
