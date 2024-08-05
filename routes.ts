@@ -34,7 +34,8 @@ router.get("/storage/delete/:id",StorageController.delete);
 router.post("/storage/edit/:id", uploads.single("layoutEdited"),StorageController.edit); 
 //purchaseOrders routes 
 router.get("/purchase/orders/index",PurchaseOrdersController.index);   
-router.post("/purchase/orders/create",PurchaseOrdersController.create);   
+router.post("/purchase/orders/create",PurchaseOrdersController.create); 
+router.get("/purchase/orders/delete/:id",PurchaseOrdersController.delete);   
 
 //Supplier Routes 
 router.get("/supplier/index",SupplierController.index) 

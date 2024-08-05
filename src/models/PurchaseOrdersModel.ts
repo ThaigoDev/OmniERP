@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const PurchaseOrdersSchema = mongoose.Schema({
-  supplierID: { type: Schema.Types.ObjectId, ref: "Suppliers" },
-  date: { type: Date, dafault: Date.now },
+  supplierID: { type: Schema.Types.ObjectId, ref: "Suppliers" }, 
+  responsible: {type:String, required:true}, 
   paymentMethod: { type: String, required: true },
   productsID:  [{ type: Schema.Types.ObjectId, ref: "Products" }],
-  quantities: [{ type: Number, required: false }]
+  quantities: [{ type: Number, required: false }], 
+  date: { type: Date, dafault: Date.now },
   });
 const PurchaseOrdersModel = mongoose.model(
   "PurchaseOders",
@@ -54,6 +55,13 @@ class PurchaseOrdersRules {
     }catch(e:any) {
       throw new Error(e); 
     } 
+  } 
+  public async delete(id:string): Promise<any> {
+    try{
+    this.Orders = await PurchaseOrdersModel.findByIdAndDelete({_id:id}); 
+    }catch(e:any)  {
+      throw new Error(e); 
+    }
   }
 }
 module.exports = PurchaseOrdersRules;

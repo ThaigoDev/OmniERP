@@ -17,16 +17,31 @@ abstract class PurchaseOrdersController {
     try {
       let body: object = {};
       body = {
-        supplierID: req.body.supplierID,
+        supplierID: req.body.supplierID, 
+        responsible: req.session.user.name, 
         paymentMethod: req.body.paymentMethod,
         productsID: req.body.productsID,
-        quantities: req.body.quantities,
+        quantities: req.body.quantities, 
+        date: Date.now(), 
       };
       console.log(body);
       const purchaseRules = new PurchaseOrdersRules(body);
       await purchaseRules.create();
       res.redirect("back");
     } catch (e: any) {
+      res.status(500).json({
+        title: "Internal Server Error 500 !",
+        status: "failed",
+        error: e,
+      });
+    }
+  } 
+  public static async delete(req:any,res:any) : Promise<any> {
+    try {
+      const purchaseRules = new PurchaseOrdersRules(req.body); 
+      await  purchaseRules.delete(req.params.id); 
+      res.redirect("back"); 
+    }catch(e:any) {
       res.status(500).json({
         title: "Internal Server Error 500 !",
         status: "failed",

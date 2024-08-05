@@ -1,19 +1,50 @@
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Fornecedor</th>
-        <th scope="col">Data do Pedido</th>
-        <th scope="col">Data de Entrega Prevista</th>  
-        <th scope="col">Status do Pedido</th>
-        <th scope="col">Ações</th>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Responsável</th>
+      <th scope="col">Data do Pedido</th>
+      <th scope="col">Fornecedor</th>
+      <th scope="col">Ações</th>
 
 
-      </tr>
-    </thead>
-    <tbody>   
-    
-    </tbody> 
+    </tr>
+  </thead>
+  <tbody>
+    <% let i=0 %>
+      <% allOrders.forEach(order=> { %>
+        <% i++ %>
+          <tr class="p-2">
+            <th scope="row">
+              <%= i %>
+            </th>
+            <td class="d-flex align-items-center justify-content-start">
 
-  </table> 
-  
+              <div class="img-product">
+                <img
+                  src="https://img.freepik.com/free-vector/shopping-bag-concept-illustration_114360-9000.jpg?t=st=1722864581~exp=1722868181~hmac=5326ca5a2399f778a3103e6462c905c1076aea7664b5e044ffc1db793c5d96d9&w=826"
+                  alt="">
+              </div>
+
+              <%= order.responsible %>
+            </td>
+
+            <td>
+              <%= order.date %>
+            </td> 
+            <td>
+              <%= order.supplier.name %>
+            </td>
+            <td>
+              <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop-<%=i%>"><i class=" icon ph-bold ph-pencil-simple"></i></button>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop-Delete-<%=i%>"><i class=" icon ph-bold ph-trash"></i> </button>
+              <%- include('DeleteModalPurchaseOrders.ejs',{order:order,i:i}) %>
+            </td>
+          </tr>
+
+          <% }) %>
+  </tbody>
+
+</table>
