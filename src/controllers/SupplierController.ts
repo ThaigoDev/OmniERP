@@ -1,5 +1,6 @@
 const SupplierRules = require("../models/SupplierModel");
 abstract class SupplierController {
+
   public static async index(req: any, res: any): Promise<any> {
     const supplierRules = new SupplierRules(req.body);
     const suppliers = await supplierRules.get();
@@ -59,6 +60,7 @@ abstract class SupplierController {
       });
     }
   }
+  
 }
 
 module.exports = SupplierController;
